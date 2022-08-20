@@ -1,0 +1,43 @@
+html {
+    font-size: 62.5%
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 1.8rem;
+}
+main .paginaUno h1 {
+    font-size: 3rem;
+    margin: 3rem;
+}
+main .paginaUno {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+main .paginaUno label, button {
+    background-color: rgb(108, 195, 253);
+    width: 20rem;
+    height: 5rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 2rem;
+    text-align: center;
+}
+
+main .paginaDos div {
+    display: flex;
+    width: 50vw;
+    height: 50vh;   
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;   
+}
+main .paginaDos {
+    display:grid;
+    grid-auto-columns: 50vw;
+}

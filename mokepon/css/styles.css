@@ -6,6 +6,7 @@ html {
     margin: 0;
     padding: 0;
     font-size: 1.8rem;
+    font-family: sans-serif, "Helvetica Neue";
 }
 main .paginaUno h1 {
     font-size: 3rem;
@@ -25,17 +26,27 @@ main .paginaUno label, button {
     height: 5rem;
     border-radius: 10px;
     border: 1px solid black;
-    margin: 2rem;
+    margin: 2rem auto;
     text-align: center;
 }
-
 main .paginaDos {
     display: grid;
-    grid-template-columns: 50vw;
-    justify-content: start;
-    justify-items: center;  
+    grid-template-columns: 50vw 50vw;
+    grid-template-rows: 100vh;
 }
-main .parteIzquierda {
-
-
+main .paginaDos section {
+    padding: 3rem;
 }
+main .paginaDos section div{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+main #reiniciar button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

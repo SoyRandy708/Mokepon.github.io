@@ -1,52 +1,48 @@
 html {
     font-size: 62.5%
 }
-* {
+body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-size: 1.8rem;
     font-family: sans-serif, "Helvetica Neue";
+    background-color: #00D7FF;
+    color: black;
 }
-main .paginaUno h1 {
-    font-size: 3rem;
-    margin: 3rem;
-}
-main .paginaUno {
-    display: flex;
+#seleccionar-mascota {
     width: 100vw;
     height: 100vh;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-main .paginaUno label, button {
-    background-color: rgb(108, 195, 253);
-    width: 20rem;
-    height: 5rem;
-    border-radius: 10px;
-    border: 1px solid black;
-    margin: 2rem auto;
-    text-align: center;
-}
-main .paginaDos {
-    display: grid;
-    grid-template-columns: 50vw 50vw;
-    grid-template-rows: 100vh;
-}
-main .paginaDos section {
-    padding: 3rem;
-}
-main .paginaDos section div{
     display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} 
+.titulo {
+    font-size: 3.2rem;
 }
-main #reiniciar button {
+.subtitulo {
+    font-size: 2rem;
+}
+.tarjetas {
     display: flex;
+    gap: 2rem;
+}
+.tarjeta-de-mokepon {
+    width: 11rem;
+    height: 14rem;
+    background-color: #72FFFF;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
+.tarjeta-de-mokepon img {
+    width: 8rem;
+}
+input {
+    display: none;
+}

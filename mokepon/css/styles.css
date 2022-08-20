@@ -29,15 +29,13 @@ main .paginaUno label, button {
     text-align: center;
 }
 
-main .paginaDos div {
-    display: flex;
-    width: 50vw;
-    height: 50vh;   
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;   
-}
 main .paginaDos {
-    display:grid;
-    grid-auto-columns: 50vw;
+    display: grid;
+    grid-template-columns: 50vw;
+    justify-content: start;
+    justify-items: center;  
+}
+main .parteIzquierda {
+
+
 }

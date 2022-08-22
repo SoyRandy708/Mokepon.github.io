@@ -22,11 +22,12 @@ body {
     font-size: 3.2rem;
 }
 .subtitulo {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 .tarjetas {
     display: flex;
     gap: 2rem;
+
 }
 .tarjeta-de-mokepon {
     width: 11rem;
@@ -45,4 +46,11 @@ body {
 }
 input {
     display: none;
+}
+#boton-mascota {
+    padding: 1rem 4rem;
+    margin: 3rem;
+    background: transparent;
+    border-radius: 20px;
+    font-size: 2rem;
 }

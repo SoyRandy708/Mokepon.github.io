@@ -64,26 +64,26 @@ function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 function ataqueFuego() { 
-    ataqueJugador = "FUEGO"
+    ataqueJugador = "FUEGO 🔥"
     ataqueAleatorioEnemigo()
 }
 function ataqueAgua() {
-    ataqueJugador = "AGUA"
+    ataqueJugador = "AGUA 💧"
     ataqueAleatorioEnemigo()
 }
 function ataqueTierra() {
-    ataqueJugador = "TIERRA"
+    ataqueJugador = "TIERRA 🌱"
     ataqueAleatorioEnemigo()
 }
 function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(1, 3)
 
     if(ataqueAleatorio == 1) {
-        ataqueEnemigo = "FUEGO"
+        ataqueEnemigo = "FUEGO 🔥"
     } else if(ataqueAleatorio == 2) {
-        ataqueEnemigo = "AGUA"
+        ataqueEnemigo = "AGUA 💧"
     } else {
-        ataqueEnemigo = "TIERRA"
+        ataqueEnemigo = "TIERRA 🌱"
     }
 
     combate()
@@ -107,16 +107,25 @@ function combate() {
     revisarVidas()
 }
 function crearMensaje(resultado) {
-    let sectionMensajes = document.getElementById("mensajes")
-    let parrafo = document.createElement("p")
-    parrafo.innerHTML = "Tu mascota ataco con " + ataqueJugador + ", la mascota enemiga ataco con " + ataqueEnemigo + ", " + resultado   
-    sectionMensajes.appendChild(parrafo)
+    let sectionMensajes = document.getElementById("resultado")
+    let ataquesDelJugador = document.getElementById("ataques-del-jugador")
+    let ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
+
+    let nuevoAtaqueDelJugador = document.createElement("p")
+    let nuevoAtaqueDelEnemigo = document.createElement("p")
+
+    sectionMensajes.innerHTML = resultado
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador 
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo
+
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
+    ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 }
 function crearMensajeFinal(resultadoFinal) {
-    let sectionMensajes = document.getElementById("mensajes")
-    let parrafo = document.createElement("p")
-    parrafo.innerHTML = resultadoFinal
-    sectionMensajes.appendChild(parrafo)
+    let sectionMensajes = document.getElementById("resultado")
+ 
+    sectionMensajes.innerHTML = resultadoFinal
+
 
     let botonFuego = document.getElementById("boton-fuego")
     botonFuego.disabled = true

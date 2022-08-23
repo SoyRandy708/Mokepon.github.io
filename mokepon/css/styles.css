@@ -67,6 +67,32 @@ input {
     border-radius: 2rem;
     font-size: 1.6rem;
     font-family: 'Poppins', sans-serif;
-
+}
+#mensajes {
+    background: white;
+    margin: 2rem;
+    padding: 2rem 5rem;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#boton-reiniciar {
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    background: transparent;
+}
+.resumen-batalla {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.resumen-batalla div {
+    background: #72FFFF;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }

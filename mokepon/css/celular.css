@@ -1,0 +1,10 @@
+@media(max-width: 400px) {
+    .tarjetas {
+        flex-direction: column;
+    }
+}
+@media(max-width: 550px) {
+    .botones-de-ataque {
+        flex-direction: column;
+    }
+}

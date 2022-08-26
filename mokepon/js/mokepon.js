@@ -34,6 +34,8 @@ let botonTierra
 let botones = []
 let indexAtaqueJugador
 let indexAtaqueEnemigo
+let victoriasJugador = 0
+let victoriasEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
 
@@ -149,15 +151,18 @@ function secuenciaAtaque() {
             if(e.target.textContent === "🔥") {
                 ataqueJugador.push("FUEGO 🔥")
                 console.log(ataqueJugador)
-                boton.style.background = "#112f58"
+                boton.style.background = "#0096FF"
+                boton.disabled = true
             } else if(e.target.textContent === "💧") {
                 ataqueJugador.push("AGUA 💧")
                 console.log(ataqueJugador)
-                boton.style.background = "#112f58"
+                boton.style.background = "#0096FF"
+                boton.disabled = true
             } else {
                 ataqueJugador.push("TIERRA 🌱")
                 console.log(ataqueJugador)
-                boton.style.background = "#112f58"               
+                boton.style.background = "#0096FF"   
+                boton.disabled = true            
             }
             ataqueAleatorioEnemigo()
         })
@@ -202,9 +207,13 @@ for (let index = 0; index < ataqueJugador.length; index++) {
     } else if(ataqueJugador[index] === "TIERRA 🌱" && ataqueEnemigo[index] === "AGUA 💧" || ataqueJugador[index] === "AGUA 💧" && ataqueEnemigo[index] === "FUEGO 🔥" || ataqueJugador[index] === "FUEGO 🔥" && ataqueEnemigo[index] === "TIERRA 🌱") {
         indexAmbosOponentes(index, index)
         crearMensaje("GANASTE")
+        victoriasJugador++
+        spanVidasJugador.innerHTML = victoriasJugador
     } else {
         indexAmbosOponentes(index, index)
         crearMensaje("PERDISTE")
+        victoriasEnemigo++
+        spanVidasEnemigo.innerHTML = victoriasEnemigo
     } 
 }
     revisarVidas()
@@ -230,10 +239,12 @@ function crearMensajeFinal(resultadoFinal) {
     sectionReiniciar.style.display = "block"
 }
 function revisarVidas() {
-    if(vidasEnemigo == 0) {
-        crearMensajeFinal("FELICITACIONES GANASTE")
-    } else if(vidasJugador == 0) {
-        crearMensajeFinal("Lo siento, perdiste")
+    if(victoriasJugador === victoriasEnemigo) {
+        crearMensajeFinal("ESTO FUE UN EMPATE")
+    } else if(victoriasJugador > victoriasEnemigo) {
+        crearMensajeFinal("FELICIDADES, GANASTE!")
+    } else {
+        crearMensajeFinal("LO SIENTO, HAS PERDIDO")
     }
 }
 function reiniciarJuego() {

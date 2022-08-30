@@ -42,6 +42,7 @@ class Mokepon {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
+        this.tipo = []
         this.ataques = []
     }
 }
@@ -60,12 +61,18 @@ hipodoge.ataques.push(
     {nombre: "🔥", id: "boton-fuego"},
     {nombre: "🌱", id: "boton-tierra"},
 )
+hipodoge.tipo.push(
+    {nombre: "Agua"},
+)
 capipepo.ataques.push(
     {nombre: "🌱", id: "boton-tierra"},
     {nombre: "🌱", id: "boton-tierra"},
     {nombre: "🌱", id: "boton-tierra"},    
     {nombre: "💧", id: "boton-agua"},
     {nombre: "🔥", id: "boton-fuego"},
+)
+capipepo.tipo.push(
+    {nombre: "Tierra"},
 )
 ratigueya.ataques.push(
     {nombre: "🔥", id: "boton-fuego"},
@@ -74,12 +81,19 @@ ratigueya.ataques.push(
     {nombre: "💧", id: "boton-agua"},
     {nombre: "🌱", id: "boton-tierra"},
 )
+ratigueya.tipo.push(
+    {nombre: "Fuego"},
+)
 pydos.ataques.push(
     {nombre: "🌱", id:"boton-tierra"},
     {nombre: "🌱", id:"boton-tierra"},
     {nombre: "🔥", id:"boton-fuego"},
     {nombre: "🔥", id:"boton-fuego"},
     {nombre: "🔥", id:"boton-fuego"},
+)
+pydos.tipo.push(
+    {nombre: "Tierra"},
+    {nombre: "Fuego"},
 )
 langostelvis.ataques.push(
     {nombre: "🔥", id:"boton-fuego"},
@@ -88,12 +102,20 @@ langostelvis.ataques.push(
     {nombre: "💧", id:"boton-agua"},
     {nombre: "💧", id:"boton-agua"},
 )
+langostelvis.tipo.push(
+    {nombre: "Fuego"},
+    {nombre: "Agua"},
+)
 tucapalma.ataques.push(
     {nombre: "💧", id:"boton-agua"},
     {nombre: "💧", id:"boton-agua"},
     {nombre: "🌱", id:"boton-tierra"},
     {nombre: "🌱", id:"boton-tierra"},
     {nombre: "🌱", id:"boton-tierra"},
+)
+tucapalma.tipo.push(
+    {nombre: "Agua"},
+    {nombre: "Tierra"},
 )
 mokepones.push(hipodoge, capipepo, ratigueya, pydos, langostelvis, tucapalma)
 
@@ -149,7 +171,13 @@ function seleccionarMascotaJugador() {
     } 
 
     extraerAtaques(mascotaJugador)
+    tipoAtaque()
     seleccionarMascotaEnemigo()
+}
+function tipoAtaque() {
+    if(mokepones){
+
+    }
 }
 function extraerAtaques(mascotaJugador) {
     let ataques 
@@ -204,9 +232,9 @@ function seleccionarMascotaEnemigo() {
     ataquesMokeponEnemigo = mokepones[mascotaAleatoria].ataques
     secuenciaAtaque()
 }
-
 function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(0, ataquesMokeponEnemigo.length - 1)
+    
     if(ataqueAleatorio == 0 || ataqueAleatorio == 1) {
         ataqueEnemigo.push("FUEGO 🔥")
     } else if(ataqueAleatorio == 2 || ataqueAleatorio == 3) {
@@ -256,7 +284,6 @@ function crearMensaje(resultado) {
     ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
     ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 }
-
 function revisarVidas() {
     if(victoriasJugador === victoriasEnemigo) {
         crearMensajeFinal("ESTO FUE UN EMPATE")
@@ -268,10 +295,6 @@ function revisarVidas() {
 }
 function crearMensajeFinal(resultadoFinal) {
     sectionMensajes.innerHTML = resultadoFinal
-
-    botonFuego.disabled = true
-    botonAgua.disabled = true
-    botonTierra.disabled = true
 }
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)

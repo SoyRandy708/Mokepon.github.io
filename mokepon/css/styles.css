@@ -26,14 +26,13 @@ body {
 .subtitulo {
     font-size: 2.5rem;
 }
-.tarjetas, .botones-de-ataque {
+.tarjetas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(120px, 1fr));
     justify-items: center;
     gap: 2rem 1rem;
     width: 80vw;
-
 }
 .tarjeta-de-mokepon {
     width: 11rem;
@@ -68,9 +67,16 @@ input:checked + label {
     flex-direction: column;
     align-items: center;
 }
+.botones-de-ataque {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
 .boton-de-ataque {
     background-color: #72FFFF;
-    padding: 1rem 4rem;
+    padding: 1rem 5rem;
+    margin: 1rem;
     border-radius: 2rem;
     border: none;
     font-size: 1.6rem;

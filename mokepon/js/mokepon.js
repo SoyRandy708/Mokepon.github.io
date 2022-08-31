@@ -55,63 +55,63 @@ let langostelvis = new Mokepon("Langostelvis", "./Assets/mokepons_mokepon_langos
 let tucapalma = new Mokepon("Tucapalma", "./Assets/mokepons_mokepon_tucapalma_attack.png", 5)
 
 hipodoge.ataques.push(
-    {nombre: "💧", id: "boton-agua"},
-    {nombre: "💧", id: "boton-agua"},
-    {nombre: "💧", id: "boton-agua"},
-    {nombre: "🔥", id: "boton-fuego"},
-    {nombre: "🌱", id: "boton-tierra"},
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},
 )
 hipodoge.tipo.push(
     {nombre: "Agua"},
 )
 capipepo.ataques.push(
-    {nombre: "🌱", id: "boton-tierra"},
-    {nombre: "🌱", id: "boton-tierra"},
-    {nombre: "🌱", id: "boton-tierra"},    
-    {nombre: "💧", id: "boton-agua"},
-    {nombre: "🔥", id: "boton-fuego"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},    
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},
 )
 capipepo.tipo.push(
     {nombre: "Tierra"},
 )
 ratigueya.ataques.push(
-    {nombre: "🔥", id: "boton-fuego"},
-    {nombre: "🔥", id: "boton-fuego"},
-    {nombre: "🔥", id: "boton-fuego"},  
-    {nombre: "💧", id: "boton-agua"},
-    {nombre: "🌱", id: "boton-tierra"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},  
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},
 )
 ratigueya.tipo.push(
     {nombre: "Fuego"},
 )
 pydos.ataques.push(
-    {nombre: "🌱", id:"boton-tierra"},
-    {nombre: "🌱", id:"boton-tierra"},
-    {nombre: "🔥", id:"boton-fuego"},
-    {nombre: "🔥", id:"boton-fuego"},
-    {nombre: "🔥", id:"boton-fuego"},
+    {nombre: "TIERRA 🌱", id:"boton-tierra"},
+    {nombre: "TIERRA 🌱", id:"boton-tierra"},
+    {nombre: "FUEGO 🔥", id:"boton-fuego"},
+    {nombre: "FUEGO 🔥", id:"boton-fuego"},
+    {nombre: "FUEGO 🔥", id:"boton-fuego"},
 )
 pydos.tipo.push(
     {nombre: "Tierra"},
     {nombre: "Fuego"},
 )
 langostelvis.ataques.push(
-    {nombre: "🔥", id:"boton-fuego"},
-    {nombre: "🔥", id:"boton-fuego"},
-    {nombre: "🔥", id:"boton-fuego"},
-    {nombre: "💧", id:"boton-agua"},
-    {nombre: "💧", id:"boton-agua"},
+    {nombre: "FUEGO 🔥", id:"boton-fuego"},
+    {nombre: "FUEGO 🔥", id:"boton-fuego"},
+    {nombre: "FUEGO 🔥", id:"boton-fuego"},
+    {nombre: "AGUA 💧", id:"boton-agua"},
+    {nombre: "AGUA 💧", id:"boton-agua"},
 )
 langostelvis.tipo.push(
     {nombre: "Fuego"},
     {nombre: "Agua"},
 )
 tucapalma.ataques.push(
-    {nombre: "💧", id:"boton-agua"},
-    {nombre: "💧", id:"boton-agua"},
-    {nombre: "🌱", id:"boton-tierra"},
-    {nombre: "🌱", id:"boton-tierra"},
-    {nombre: "🌱", id:"boton-tierra"},
+    {nombre: "AGUA 💧", id:"boton-agua"},
+    {nombre: "AGUA 💧", id:"boton-agua"},
+    {nombre: "TIERRA 🌱", id:"boton-tierra"},
+    {nombre: "TIERRA 🌱", id:"boton-tierra"},
+    {nombre: "TIERRA 🌱", id:"boton-tierra"},
 )
 tucapalma.tipo.push(
     {nombre: "Agua"},
@@ -204,12 +204,12 @@ function mostrarAtaques(ataques) {
 function secuenciaAtaque() {
     botones.forEach((boton) => {
         boton.addEventListener("click", (e) => {
-            if(e.target.textContent === "🔥") {
+            if(e.target.textContent === "FUEGO 🔥") {
                 ataqueJugador.push("FUEGO 🔥")
                 console.log(ataqueJugador)
                 boton.style.background = "#0096FF"
                 boton.disabled = true
-            } else if(e.target.textContent === "💧") {
+            } else if(e.target.textContent === "AGUA 💧") {
                 ataqueJugador.push("AGUA 💧")
                 console.log(ataqueJugador)
                 boton.style.background = "#0096FF"
@@ -235,14 +235,11 @@ function seleccionarMascotaEnemigo() {
 function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(0, ataquesMokeponEnemigo.length - 1)
     
-    if(ataqueAleatorio == 0 || ataqueAleatorio == 1) {
-        ataqueEnemigo.push("FUEGO 🔥")
-    } else if(ataqueAleatorio == 2 || ataqueAleatorio == 3) {
-        ataqueEnemigo.push("AGUA 💧")
-    } else {
-        ataqueEnemigo.push("TIERRA 🌱")
-    }
+    ataqueEnemigo.push(ataquesMokeponEnemigo[ataqueAleatorio].nombre)
+    ataquesMokeponEnemigo.splice(ataqueAleatorio, 1)
+
     console.log(ataqueEnemigo)
+    console.log(ataquesMokeponEnemigo)
     iniciarPelea()
 }
 function iniciarPelea() {

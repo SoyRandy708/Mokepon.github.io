@@ -12,6 +12,8 @@ const ataquesDelJugador = document.getElementById("ataques-del-jugador")
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
 const contenedorTarjetas = document.getElementById("contenedor-tarjetas")
 const contenedorAtaques = document.getElementById("contenedor-ataques")
+const sectionVerMapa = document.getElementById("ver-mapa")
+const mapa = document.getElementById("mapa")
 
 let mokepones = []
 let ataqueJugador = []
@@ -36,6 +38,7 @@ let victoriasJugador = 0
 let victoriasEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
+let lienzo = mapa.getContext("2d")
 
 class Mokepon {
     constructor(nombre, foto, vida) {
@@ -44,6 +47,12 @@ class Mokepon {
         this.vida = vida
         this.tipo = []
         this.ataques = []
+        this.x = 20
+        this.y = 30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
     }
 }
 
@@ -122,6 +131,7 @@ mokepones.push(hipodoge, capipepo, ratigueya, pydos, langostelvis, tucapalma)
 
 function iniciarJuego() {
     sectionSeleccionarAtaque.style.display = "none"
+    sectionVerMapa.style.display = "none"
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `
@@ -146,7 +156,8 @@ function iniciarJuego() {
 }
 function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = "none"
-    sectionSeleccionarAtaque.style.display = "flex"
+    sectionVerMapa.style.display = "flex"
+    // sectionSeleccionarAtaque.style.display = "flex"
 
     if(inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id
@@ -175,8 +186,8 @@ function seleccionarMascotaJugador() {
     seleccionarMascotaEnemigo()
 }
 function tipoAtaque() {
-    if(mokepones){
-
+    if(mascotaJugador ){
+        //FALTA PONER EL BUFO SI ES QUE LA MASCOTA TIENE 2 O MAS TIPOS
     }
 }
 function extraerAtaques(mascotaJugador) {
@@ -298,5 +309,25 @@ function aleatorio(min, max) {
 }
 function reiniciarJuego() {
     location.reload()
+}
+function pintarPersonaje() {
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
+    lienzo.drawImage( capipepo.mapaFoto, capipepo.x, capipepo.y, capipepo.ancho, capipepo.alto)
+}
+function moverDerecha() {
+    capipepo.x = capipepo.x + 5
+    pintarPersonaje()
+}
+function moverIzquierda() {
+    capipepo.x = capipepo.x - 5
+    pintarPersonaje()
+}
+function moverArriba() {
+    capipepo.y = capipepo.y - 5
+    pintarPersonaje()
+}
+function moverAbajo() {
+    capipepo.y = capipepo.y + 5
+    pintarPersonaje()
 }
 window.addEventListener("load", iniciarJuego)

@@ -45,7 +45,7 @@ mapaBackground.src = "./Assets/mokemap.png"
 let mascotaJugadorObjeto
 let alturaQueBuscamos
 let anchoDelMapa = window.innerWidth - 20
-const anchoMaximoDelMapa = 700
+const anchoMaximoDelMapa = 600
 
 if(anchoDelMapa > anchoMaximoDelMapa) {
     anchoDelMapa = anchoMaximoDelMapa - 20

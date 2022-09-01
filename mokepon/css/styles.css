@@ -72,12 +72,35 @@ input:checked + label {
     align-items: center;
     justify-content: center;
 }
+.botones-movimiento {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(20px, 50px));
+    grid-template-rows: repeat(3, minmax(20px, 50px));
+    margin-top: 5px
+}
+.arriba {
+    grid-area: 1 / 2 / 2 / 3
+}
+.abajo {
+    grid-area: 3 / 2 / 4 / 3
+}
+.derecha {
+    grid-area: 2 / 3 / 3 / 4
+}
+.izquierda {
+    grid-area: 2 / 1 / 3 / 2 
+}
+#ver-mapa button {
+    background: transparent;
+    border-radius: 10px;
+    font-size: 2rem;
+}
 .botones-de-ataque {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
 }
+
 .boton-de-ataque {
     background-color: #72FFFF;
     padding: 1rem 5rem;

@@ -43,18 +43,29 @@ let intervalo
 let mapaBackground = new Image()
 mapaBackground.src = "./Assets/mokemap.png"
 let mascotaJugadorObjeto
+let alturaQueBuscamos
+let anchoDelMapa = window.innerWidth - 20
+const anchoMaximoDelMapa = 700
+
+if(anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 20
+}
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBuscamos
 
 class Mokepon {
-    constructor(nombre, foto, vida, fotoMapa, x = aleatorio(0, 640 - 50), y = aleatorio(0, 480 - 50)) {
+    constructor(nombre, foto, vida, fotoMapa) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.tipo = []
         this.ataques = []
-        this.x = x
-        this.y = y
         this.ancho = 50
         this.alto = 50
+        this.x = aleatorio(0, mapa.width -this.ancho)
+        this.y = aleatorio(0, mapa.height -this.alto)
         this.mapaFoto = new Image()
         this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
@@ -84,34 +95,64 @@ let langostelvisEnemigo = new Mokepon("Langostelvis", "./Assets/langostelvis.web
 let tucapalma = new Mokepon("Tucapalma", "./Assets/tucapalma.png", 5, "./Assets/tucapalma.png")
 let tucapalmaEnemigo = new Mokepon("Tucapalma", "./Assets/tucapalma.png", 5, "./Assets/tucapalma.png")
 
-hipodoge, hipodogeEnemigo.ataques.push(
+hipodoge.ataques.push(
     {nombre: "AGUA 💧", id: "boton-agua"},
     {nombre: "AGUA 💧", id: "boton-agua"},
     {nombre: "AGUA 💧", id: "boton-agua"},
     {nombre: "FUEGO 🔥", id: "boton-fuego"},
     {nombre: "TIERRA 🌱", id: "boton-tierra"},
 )
-hipodoge, hipodogeEnemigo.tipo.push(
+hipodoge.tipo.push(
     {nombre: "Agua"},
 )
-capipepo, capipepoEnemigo.ataques.push(
+hipodogeEnemigo.ataques.push(
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},
+)
+hipodogeEnemigo.tipo.push(
+    {nombre: "Agua"},
+)
+capipepo.ataques.push(
     {nombre: "TIERRA 🌱", id: "boton-tierra"},
     {nombre: "TIERRA 🌱", id: "boton-tierra"},
     {nombre: "TIERRA 🌱", id: "boton-tierra"},    
     {nombre: "AGUA 💧", id: "boton-agua"},
     {nombre: "FUEGO 🔥", id: "boton-fuego"},
 )
-capipepo, capipepoEnemigo.tipo.push(
+capipepo.tipo.push(
     {nombre: "Tierra"},
 )
-ratigueya, ratigueyaEnemigo.ataques.push(
+capipepoEnemigo.ataques.push(
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},    
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},
+)
+capipepoEnemigo.tipo.push(
+    {nombre: "Tierra"},
+)
+ratigueya.ataques.push(
     {nombre: "FUEGO 🔥", id: "boton-fuego"},
     {nombre: "FUEGO 🔥", id: "boton-fuego"},
     {nombre: "FUEGO 🔥", id: "boton-fuego"},  
     {nombre: "AGUA 💧", id: "boton-agua"},
     {nombre: "TIERRA 🌱", id: "boton-tierra"},
 )
-ratigueya, ratigueyaEnemigo.tipo.push(
+ratigueya.tipo.push(
+    {nombre: "Fuego"},
+)
+ratigueyaEnemigo.ataques.push(
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},
+    {nombre: "FUEGO 🔥", id: "boton-fuego"},  
+    {nombre: "AGUA 💧", id: "boton-agua"},
+    {nombre: "TIERRA 🌱", id: "boton-tierra"},
+)
+ratigueyaEnemigo.tipo.push(
     {nombre: "Fuego"},
 )
 pydos.ataques.push(
@@ -367,8 +408,7 @@ function reiniciarJuego() {
     location.reload()
 }
 function iniciarMapa() {
-    mapa.width = 640
-    mapa.height = 480
+
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
     intervalo = setInterval(pintarCanvas, 50)
     window.addEventListener("keydown", teclaPresionada)

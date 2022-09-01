@@ -72,9 +72,6 @@ input:checked + label {
     align-items: center;
     justify-content: center;
 }
-#mapa {
-    border: 1px solid black;
-}
 .botones-de-ataque {
     display: flex;
     flex-wrap: wrap;

@@ -45,29 +45,44 @@ mapaBackground.src = "./Assets/mokemap.png"
 let mascotaJugadorObjeto
 
 class Mokepon {
-    constructor(nombre, foto, vida) {
+    constructor(nombre, foto, vida, fotoMapa, x = aleatorio(0, 640 - 50), y = aleatorio(0, 480 - 50)) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.tipo = []
         this.ataques = []
-        this.x = 20
-        this.y = 30
-        this.ancho = 80
-        this.alto = 80
+        this.x = x
+        this.y = y
+        this.ancho = 50
+        this.alto = 50
         this.mapaFoto = new Image()
-        this.mapaFoto.src = foto
+        this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
     }
+
+    pintarMokepon() {
+        lienzo.drawImage( 
+            this.mapaFoto, 
+            this.x, 
+            this.y, 
+            this.ancho, 
+            this.alto)
+    }
 }
 
-let hipodoge = new Mokepon("Hipodoge", "./Assets/mokepons_mokepon_hipodoge_attack.webp", 5)
-let capipepo = new Mokepon("Capipepo", "./Assets/mokepons_mokepon_capipepo_attack.webp", 5)
-let ratigueya = new Mokepon("Ratigueya", "./Assets/mokepons_mokepon_ratigueya_attack.png", 5)
-let pydos = new Mokepon("Pydos", "./Assets/mokepons_mokepon_pydos_attack.png", 5)
-let langostelvis = new Mokepon("Langostelvis", "./Assets/mokepons_mokepon_langostelvis_attack.webp", 5)
-let tucapalma = new Mokepon("Tucapalma", "./Assets/mokepons_mokepon_tucapalma_attack.png", 5)
+let hipodoge = new Mokepon("Hipodoge", "./Assets/hipodoge.webp", 5, "./Assets/cabezaHipodoge.webp")
+let hipodogeEnemigo = new Mokepon("Hipodoge", "./Assets/hipodoge.webp", 5, "./Assets/cabezaHipodoge.webp")
+let capipepo = new Mokepon("Capipepo", "./Assets/capipepo.webp", 5, "./Assets/cabezaCapipepo.webp")
+let capipepoEnemigo = new Mokepon("Capipepo", "./Assets/capipepo.webp", 5, "./Assets/cabezaCapipepo.webp")
+let ratigueya = new Mokepon("Ratigueya", "./Assets/ratigueya.png", 5, "./Assets/cabezaRatigueya.png")
+let ratigueyaEnemigo = new Mokepon("Ratigueya", "./Assets/ratigueya.png", 5, "./Assets/cabezaRatigueya.png")
+let pydos = new Mokepon("Pydos", "./Assets/pydos.png", 5, "./Assets/pydos.png")
+let pydosEnemigo = new Mokepon("Pydos", "./Assets/pydos.png", 5, "./Assets/pydos.png")
+let langostelvis = new Mokepon("Langostelvis", "./Assets/langostelvis.webp", 5, "./Assets/langostelvis.webp")
+let langostelvisEnemigo = new Mokepon("Langostelvis", "./Assets/langostelvis.webp", 5, "./Assets/langostelvis.webp")
+let tucapalma = new Mokepon("Tucapalma", "./Assets/tucapalma.png", 5, "./Assets/tucapalma.png")
+let tucapalmaEnemigo = new Mokepon("Tucapalma", "./Assets/tucapalma.png", 5, "./Assets/tucapalma.png")
 
 hipodoge.ataques.push(
     {nombre: "AGUA 💧", id: "boton-agua"},
@@ -318,8 +333,8 @@ function reiniciarJuego() {
     location.reload()
 }
 function iniciarMapa() {
-    mapa.width = 320
-    mapa.height = 240
+    mapa.width = 640
+    mapa.height = 480
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
     intervalo = setInterval(pintarCanvas, 50)
     window.addEventListener("keydown", teclaPresionada)
@@ -330,7 +345,13 @@ function pintarCanvas() {
     mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height)
-    lienzo.drawImage( mascotaJugadorObjeto.mapaFoto, mascotaJugadorObjeto.x, mascotaJugadorObjeto.y, mascotaJugadorObjeto.ancho, mascotaJugadorObjeto.alto)
+    mascotaJugadorObjeto.pintarMokepon()
+    hipodogeEnemigo.pintarMokepon()
+    capipepoEnemigo.pintarMokepon()
+    ratigueyaEnemigo.pintarMokepon()
+    pydosEnemigo.pintarMokepon()
+    langostelvis.pintarMokepon()
+    tucapalma.pintarMokepon()
 }
 function moverDerecha() {
     mascotaJugadorObjeto.velocidadX = 5

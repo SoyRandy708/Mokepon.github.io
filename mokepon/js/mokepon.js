@@ -16,6 +16,7 @@ const sectionVerMapa = document.getElementById("ver-mapa")
 const mapa = document.getElementById("mapa")
 
 let jugadorId = null
+let enemigoId = null
 let mokepones = []
 let mokeponesEnemigos = []
 let ataqueJugador = []
@@ -292,8 +293,21 @@ function secuenciaAtaque() {
                 boton.style.background = "#0096FF"   
                 boton.disabled = true            
             }
+            if(ataqueJugador.length === 5) {
+                enviarAtaques()
+            }
 
-            ataqueAleatorioEnemigo()
+        })
+    })
+}
+function enviarAtaques() {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}ataques`, {
+        method: "post", 
+        headers: {
+            "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify({
+            ataques: ataqueJugador
         })
     })
 }
@@ -393,15 +407,8 @@ function pintarCanvas() {
 
     mokeponesEnemigos.forEach(function (mokepon) {
         mokepon.pintarMokepon()
+        revisarColision(mokepon)
     })
-    if(mascotaJugadorObjeto.velocidadX != 0 || mascotaJugadorObjeto.velocidadY != 0) {
-        revisarColision(hipodogeEnemigo)
-        revisarColision(capipepoEnemigo)
-        revisarColision(ratigueyaEnemigo)
-        revisarColision(pydosEnemigo)
-        revisarColision(langostelvisEnemigo)
-        revisarColision(tucapalmaEnemigo)
-    }
 }
 function enviarPosicion(x, y) {
     fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, { 
@@ -423,17 +430,17 @@ function enviarPosicion(x, y) {
                         let mokeponEnemigo = null
                         const mokeponNombre = enemigo.mokepon.nombre || ""
                         if (mokeponNombre === "Hipodoge") {
-                            mokeponEnemigo = new Mokepon("Hipodoge", "./Assets/hipodoge.webp", 5, "./Assets/cabezaHipodoge.webp")
+                            mokeponEnemigo = new Mokepon("Hipodoge", "./Assets/hipodoge.webp", 5, "./Assets/cabezaHipodoge.webp", enemigo.id)
                         } else if (mokeponNombre === "Capipepo") {
-                            mokeponEnemigo = new Mokepon("Capipepo", "./Assets/capipepo.webp", 5, "./Assets/cabezaCapipepo.webp")
+                            mokeponEnemigo = new Mokepon("Capipepo", "./Assets/capipepo.webp", 5, "./Assets/cabezaCapipepo.webp", enemigo.id)
                         } else if (mokeponNombre === "Ratigueya") {
-                            mokeponEnemigo = new Mokepon("Ratigueya", "./Assets/ratigueya.png", 5, "./Assets/cabezaRatigueya.png")
+                            mokeponEnemigo = new Mokepon("Ratigueya", "./Assets/ratigueya.png", 5, "./Assets/cabezaRatigueya.png", enemigo.id)
                         } else if (mokeponNombre === "Pydos") {
-                            mokeponEnemigo = new Mokepon("Pydos", "./Assets/pydos.png", 5, "./Assets/pydos.png")
+                            mokeponEnemigo = new Mokepon("Pydos", "./Assets/pydos.png", 5, "./Assets/pydos.png", enemigo.id)
                         } else if (mokeponNombre === "Langostelvis") {
-                            mokeponEnemigo = new Mokepon("Langostelvis", "./Assets/langostelvis.webp", 5, "./Assets/langostelvis.webp")
+                            mokeponEnemigo = new Mokepon("Langostelvis", "./Assets/langostelvis.webp", 5, "./Assets/langostelvis.webp", enemigo.id)
                         } else if (mokeponNombre === "Tucapalma") {
-                            mokeponEnemigo = new Mokepon("Tucapalma", "./Assets/tucapalma.png", 5, "./Assets/tucapalma.png")
+                            mokeponEnemigo = new Mokepon("Tucapalma", "./Assets/tucapalma.png", 5, "./Assets/tucapalma.png", enemigo.id)
                         }
 
                         mokeponEnemigo.x = enemigo.x
@@ -509,5 +516,6 @@ function revisarColision(enemigo) {
     sectionVerMapa.style.display = "none"
     seleccionarMascotaEnemigo(enemigo)
     console.log("Hay colision " + enemigo.nombre)
+    enemigoId = enemigo.id
 }
 window.addEventListener("load", iniciarJuego)
